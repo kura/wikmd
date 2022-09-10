@@ -15,6 +15,19 @@ from whoosh.highlight import SentenceFragmenter
 from whoosh.qparser import MultifieldParser
 from whoosh.writing import AsyncWriter
 
+from latex import MarkdownLatex
+
+
+markdown = Markdown(
+    extensions=[
+        "meta",
+        "extra",
+        "smarty",
+        "toc",
+        MarkdownLatex()
+    ]
+)
+
 
 class SearchSchema(SchemaClass):
     path: ID = ID(stored=True, unique=True)
@@ -40,8 +53,7 @@ class Search:
             self._index = index.open_dir(index_path)
 
     def textify(self, text: str) -> str:
-        md = Markdown(extensions=["meta", "extra"])
-        html = md.convert(text)
+        html = markdown.convert(text)
         soup = BeautifulSoup(html, "html.parser")
         return soup.get_text()
 

@@ -13,6 +13,7 @@ import random
 import string
 
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, make_response
+from markdown import Markdown
 from werkzeug.utils import secure_filename
 from random import randint
 from threading import Thread
@@ -22,6 +23,7 @@ from config import WikmdConfig
 from git_manager import WikiRepoManager
 from search import Search, Watchdog
 from web_dependencies import get_web_deps
+from latex import MarkdownLatex
 
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
@@ -49,7 +51,17 @@ SYSTEM_SETTINGS = {
     "web_deps": get_web_deps(cfg.local_mode, app.logger)
 }
 
+markdown = Markdown(
+    extensions=[
+        "meta",
+        "extra",
+        "smarty",
+        "toc",
+        MarkdownLatex()
+    ]
+)
 cache = Cache(cfg.cache_dir)
+
 
 def save(page_name):
     """
@@ -177,8 +189,10 @@ def file_page(file_page):
 
         try:
             app.logger.info(f"Converting to HTML with pandoc >>> '{md_file_path}' ...")
-            html = pypandoc.convert_file(md_file_path, "html5",
-                                         format='md', extra_args=["--mathjax"], filters=['pandoc-xnos'])
+            # html = pypandoc.convert_file(md_file_path, "html5",
+            #                              format='md', extra_args=["--mathjax"], filters=['pandoc-xnos'])
+            with open(md_file_path) as f:
+                html = markdown.convert(f.read())
             html = clean_html(html)
             cache.set(md_file_path, html)
 
@@ -208,9 +222,10 @@ def index():
 
         try:
             app.logger.info("Converting to HTML with pandoc >>> 'homepage' ...")
-            html = pypandoc.convert_file(
-                md_file_path, "html5", format='md', extra_args=["--mathjax"],
-                filters=['pandoc-xnos'])
+            # html = pypandoc.convert_file(
+            #     md_file_path, "html5", format='md', extra_args=["--mathjax"],
+            #     filters=['pandoc-xnos'])
+            html = markdown.convert(md_file_path)
             html = clean_html(html)
             cache.set(md_file_path, html)
 
