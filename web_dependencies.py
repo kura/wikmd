@@ -60,7 +60,15 @@ WEB_DEPENDENCIES = {
     "filepond.css": WebDependency(
         local="/static/css/filepond.css",
         external="https://unpkg.com/filepond/dist/filepond.css"
-    )
+    ),
+    "AtkinsonHyperlegible.woff2": WebDependency(
+        local="/static/fonts/AtkinsonHyperlegible.woff2",
+        external="https://fonts.gstatic.com/s/atkinsonhyperlegible/v10/9Bt23C1KxNDXMspQ1lPyU89-1h6ONRlW45G04pIo.woff2"
+    ),
+    "SourceCodePro.woff2": WebDependency(
+        local="/static/fonts/SourceCodePro.woff2",
+        external="https://fonts.gstatic.com/s/sourcecodepro/v22/HI_diYsKILxRpg3hIP6sJ7fM7PqPMcMnZFqUwX28DMyQtMlrTA.woff2"
+    ),
 }
 
 

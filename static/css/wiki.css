@@ -3,6 +3,7 @@
 body {
     background-color: var(--bg-light);
     color: var(--txt-light);
+    font-family: 'Atkinson Hyperlegible', sans-serif;
 }
 
 .modal-content {
@@ -17,7 +18,7 @@ blockquote {
 }
 
 code, pre {
-    font-family: monospace;
+    font-family: 'Source Code Pro', monospace;
     font-size: 14px
 }
 
