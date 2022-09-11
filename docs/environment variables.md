@@ -94,6 +94,15 @@ Do not change this location to be within your Markdown documents directory.
 export SEARCH_DIR="/some/other/path"
 ```
 
+## Search result per page
+By default wikmd will return 10 search results per page. It's possible to increase or decreate with the following parameter:
+
+`Default = 10`
+
+```
+export SEARCH_RESULTS_PER_PAGE=10
+```
+
 ## Change logging file
 
 In case you need to rename the log file you can use `WIKMD_LOGGING_FILE`.

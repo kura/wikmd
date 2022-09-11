@@ -46,12 +46,12 @@ class Search:
         return soup.get_text()
 
     def search(
-        self, term: str, page: int
+        self, term: str, results_per_page: int = 10, page: int = 1
     ) -> Tuple[List[NamedTuple], int, int, List[str]]:
         query = MultifieldParser(["title", "content"], schema=self._schema).parse(term)
         frag = SentenceFragmenter(maxchars=2000)
         with self._index.searcher() as searcher:
-            res = searcher.search_page(query, page)
+            res = searcher.search_page(query, page, pagelen=results_per_page)
             res.fragmenter = frag
             results = [
                 SearchResult(

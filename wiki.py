@@ -75,7 +75,9 @@ def search(search_term: str, page: int):
     app.logger.info(f"Searching >>> '{search_term}' ...")
     search = Search(cfg.search_dir)
     page = int(page)
-    results, num_results, num_pages, suggestions = search.search(search_term, page)
+    results, num_results, num_pages, suggestions = search.search(
+        search_term, cfg.search_results_per_page, page
+    )
     return render_template(
         'search.html',
         search_term=search_term,

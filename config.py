@@ -29,6 +29,7 @@ LOCAL_MODE = False
 
 CACHE_DIR = "/dev/shm/wikmd/cache"
 SEARCH_DIR = "/dev/shm/wikmd/searchindex"
+SEARCH_RESULTS_PER_PAGE = 10
 
 
 class WikmdConfig:
@@ -72,3 +73,4 @@ class WikmdConfig:
         self.local_mode = (os.getenv("LOCAL_MODE") in ["True", "true", "Yes", "yes"]) or yaml_config["local_mode"] or LOCAL_MODE
         self.cache_dir = os.getenv("CACHE_DIR") or yaml_config["cache_dir"] or CACHE_DIR
         self.search_dir = os.getenv("SEARCH_DIR") or yaml_config["search_dir"] or SEARCH_DIR
+        self.search_results_per_page = int(os.getenv("SEARCH_RESULTS_PER_PAGE") or yaml_config["search_results_per_page"] or SEARCH_RESULTS_PER_PAGE)
