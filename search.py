@@ -15,7 +15,7 @@ from whoosh.highlight import SentenceFragmenter
 from whoosh.qparser import MultifieldParser
 from whoosh.writing import AsyncWriter
 
-from latex import MarkdownLatex
+# from latex import MarkdownLatex
 
 
 markdown = Markdown(
@@ -24,7 +24,7 @@ markdown = Markdown(
         "extra",
         "smarty",
         "toc",
-        MarkdownLatex()
+        # MarkdownLatex()
     ]
 )
 

@@ -23,7 +23,7 @@ from config import WikmdConfig
 from git_manager import WikiRepoManager
 from search import Search, Watchdog
 from web_dependencies import get_web_deps
-from latex import MarkdownLatex
+# from latex import MarkdownLatex
 
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
@@ -57,7 +57,7 @@ markdown = Markdown(
         "extra",
         "smarty",
         "toc",
-        MarkdownLatex()
+        # MarkdownLatex()
     ]
 )
 cache = Cache(cfg.cache_dir)

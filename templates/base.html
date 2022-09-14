@@ -137,6 +137,13 @@
     <script src="{{ system.web_deps["polyfill.min.js"] }}"></script>
     <!-- MatJax -->
     <script id="MathJax-script" async src="{{ system.web_deps["tex-mml-chtml.js"] }}"></script>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$','$'], ['\\(','\\)']]
+        }
+    };
+    </script>
     <!-- Highlight -->
     <script src="{{ system.web_deps["highlight.min.js"] }}"></script>
     <script>hljs.highlightAll();</script>
